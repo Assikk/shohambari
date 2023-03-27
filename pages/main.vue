@@ -1,8 +1,10 @@
 <template>
-  <nuxt  class="px-4 sm:px-0"/>
+  <div>
+    main page
+  </div>
 </template>
 <script>
 export default {
-  name: 'LoginLayout'
+  name: 'MainPage'
 }
 </script>
