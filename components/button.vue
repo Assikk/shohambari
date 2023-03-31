@@ -1,10 +1,12 @@
 <template>
-  <button class="text-xs w-fit rounded-md py-2.5 px-4 min-w-[140px] shadow bg-[#4F46E5] text-white font-medium"
+  <button class="text-xs w-fit rounded-md py-2.5 px-4 shadow bg-[#4F46E5] text-white font-medium"
   :disabled="disabled"
   :class="[
   {'full' : isFull},
   {'outlined' : outlined},
-  {'disabled' : disabled}
+  {'disabled' : disabled},
+  {'warning' : warning},
+  {'min-w-[140px]': !small}
   ]"
   @click="$emit('click')">
     <slot/>
@@ -23,6 +25,14 @@ export default {
       default: false
     },
     disabled: { /* Если задан такой props то кнопка принимает неактивное состояние */
+      type: Boolean,
+      default: false
+    },
+    warning: { /* Если задан такой props кнопка принимает предупредительный вид (красный) */
+      type: Boolean,
+      default: false
+    },
+    small: { /* Если задан такой props то кнопка принимает маленький вид */
       type: Boolean,
       default: false
     }
@@ -46,5 +56,8 @@ export default {
 .disabled {
   background: #C7D2FE;
   color: #4338CA;
+}
+.warning {
+  background: #DC2626;
 }
 </style>
