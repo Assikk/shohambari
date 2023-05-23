@@ -4,7 +4,8 @@
       <img width="175" height="30" src="/white-logo.svg" alt="White Logo" class="mx-auto my-6">
     </NuxtLink>
     <div class="flex flex-col gap-1">
-      <div class="flex items-center gap-3 p-2 hover:bg-[#3730A3] cursor-pointer rounded-md font-medium text-sm text-[#E0E7FF]"
+      <div class="flex items-center gap-3 p-2 cursor-pointer rounded-md font-medium text-sm text-[#E0E7FF]"
+      :class="$route.fullPath.includes(page.link) ? 'bg-[#3730A3]' : 'hover:bg-[#3730A3]'"
       v-for="page in pages" :key="page.id"
       @click="changePage(page)">
       <svg fill="none" stroke="#A5B4FC" width="24" height="24" class="min-w-[24px] min-h-[24px]">
@@ -18,7 +19,7 @@
             <svg fill="#D1D5DB" stroke="none" width="20" height="20"
             :class="page.isShowChild ? 'rotate-90' : 'rotate-0'"
             v-if="page.child">
-              <use xlink:href="#arrowRight"/>
+              <use xlink:href="#arrow"/>
             </svg>
           </div>
         </div>
@@ -35,12 +36,25 @@ export default {
         {
           id: 1,
           name: 'Главная',
-          icon: 'home'
+          icon: 'home',
+          link: '/main'
         },
         {
           id: 2,
+          name: 'Пациенты',
+          icon: 'twoPerson',
+          link: '/patients'
+        },
+        {
+          id: 3,
+          name: 'Сотрудники',
+          icon: 'thirdPerson',
+          link: '/users'
+        },
+        {
+          id: 4,
           name: 'Справочник',
-          icon: 'home',
+          icon: 'cap',
           child: [],
           isShowChild: false
         }
@@ -51,9 +65,10 @@ export default {
     changePage(page) {
       if(page.child) { /* Если страница имеет дочерние страницы */
         page.isShowChild = !page.isShowChild /* Показываем/Скрываем дочерние страницы */
-        console.log('child');
-      } else console.log(page); /* Страница не имеет дочерних страниц */
+      } else { /* Страница не имеет дочерних страниц */
+        this.$router.push(page.link) /* Направляем на другую страницу */
+      }
     }
-  }
+  },
 }
 </script>

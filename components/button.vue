@@ -1,15 +1,21 @@
 <template>
-  <button class="text-xs w-fit rounded-md py-2.5 px-4 shadow bg-[#4F46E5] text-white font-medium"
+  <button class="flex items-center justify-center gap-2 text-sm w-fit rounded-md py-2.5 px-4 shadow bg-[#4F46E5] text-white font-medium"
   :disabled="disabled"
   :class="[
   {'full' : isFull},
   {'outlined' : outlined},
   {'disabled' : disabled},
-  {'warning' : warning},
-  {'min-w-[140px]': !small}
+  {'min-w-[140px]': !small},
+  {'warning' : warning}
   ]"
   @click="$emit('click')">
+    <template>
+      <slot name="prev-icon"/>
+    </template>
     <slot/>
+    <template>
+      <slot name="next-icon"/>
+    </template>
   </button>
 </template>
 <script>
@@ -28,15 +34,15 @@ export default {
       type: Boolean,
       default: false
     },
-    warning: { /* Если задан такой props кнопка принимает предупредительный вид (красный) */
-      type: Boolean,
-      default: false
-    },
     small: { /* Если задан такой props то кнопка принимает маленький вид */
       type: Boolean,
       default: false
+    },
+    warning: { /* Если задан такой props то кнопка принимает предупреждающий (красный) вид */
+      type: Boolean,
+      default: false
     }
-  }
+  },
 }
 </script>
 <style scoped>
@@ -45,8 +51,6 @@ export default {
 }
 .full {
   width: 100%;
-  font-size: 14px;
-  line-height: 19px;
 }
 .outlined {
   border: 1px solid #D1D5DB;

@@ -17,18 +17,28 @@
     <h1 class="my-6 text-[24px] leading-5 font-medium">
       Список пациентов на сегодня
     </h1>
-    <Table :head="tableHead" :body="tableBody"/>
-    <div class="mt-8">
-      pagination
-    </div>
+    <Table :head="tableHead">
+      <template #body>
+        <tr v-for="(list, index) in tableBody" :key="index">
+          <td v-for="item in list" :key="item">
+            <span>
+              {{item}}
+            </span>
+          </td>
+        </tr>
+      </template>
+    </Table>
+    <Pagination class="mt-8"/>
   </section>
 </template>
 <script>
 import Table from '@/components/table.vue'
+import Pagination from '@/components/pagination.vue'
 export default {
   name: 'MainPage',
   components: {
-    Table
+    Table,
+    Pagination
   },
   data() {
     return {
@@ -76,7 +86,7 @@ export default {
           link: '/main'
         },
       ],
-      tableHead: [
+      tableHead: [ /* Шапка таблицы */
         {
           id: 1,
           title: 'id',
@@ -108,7 +118,7 @@ export default {
           width: '15'
         },
       ],
-      tableBody: [
+      tableBody: [ /* Тело таблицы */
         {
           id: '0025',
           name: 'Саидов Умар',

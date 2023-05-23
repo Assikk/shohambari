@@ -73,5 +73,8 @@ export default {
       this.$router.push('/main') /* Отправляем юзера на главную страницу */
     },
   },
+  mounted() {
+    console.log(this.$v);
+  }
 }
 </script>

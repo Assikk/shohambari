@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-0 left-0 w-full h-full bg-black/30">
+  <div class="absolute top-0 left-0 w-full h-full bg-black/60">
     <div class="w-full h-full" @click="closeLogout">
 
     </div>
@@ -17,7 +17,7 @@
           Вы уверены, что хотите выйти? <br> Все несохраненные изменения будут потеряны.
         </p>
         <div class="flex gap-3">
-          <Button small warning
+          <Button small
           @click="logout">
             Выход
           </Button>
