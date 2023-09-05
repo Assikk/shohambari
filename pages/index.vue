@@ -65,6 +65,7 @@ export default {
   },
   methods: {
     login() {
+      console.log(this.$v);
       if(this.$v.$invalid) {
         this.$v.$touch()
         return
